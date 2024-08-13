@@ -41,7 +41,7 @@ jobs:
         ./setup.sh
     - name: Trivy FS Scan
       run: |
-       ls
+       ls -R ./src
        trivy fs --format sarif --output trivy-results.sarif ./src
 
 
