@@ -42,7 +42,7 @@ jobs:
     - name: Trivy FS Scan
       run: |
        ls
-       run: trivy fs --format sarif --output trivy-results.sarif ./src
+       trivy fs --format sarif --output trivy-results.sarif ./src
 
 
     
