@@ -34,9 +34,11 @@ jobs:
     - name: Test with pylint
       run: |
         pylint src/
-    - name: Trivy FS Scan
+    - name: Trivy FS Scan setup
       run: |
         curl -O https://raw.githubusercontent.com/arjunpt/python-flask-ec2/main
         chmod +x setup.sh
         ./setup.sh
-        trivy fs --format table -o trivy-fs-report.html .
+    - name: Trivy FS Scan
+      run: |
+       trivy fs --format table -o trivy-fs-report.html .
