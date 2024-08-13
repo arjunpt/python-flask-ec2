@@ -34,15 +34,19 @@ jobs:
     # - name: Test with pylint
     #   run: |
     #     pylint src/
-    - name: Trivy FS Scan setup
-      run: |
-        curl -O https://raw.githubusercontent.com/arjunpt/python-flask-ec2/main
-        chmod +x setup.sh
-        ./setup.sh
+    # - name: Trivy FS Scan setup
+    #   run: |
+    #     curl -O https://raw.githubusercontent.com/arjunpt/python-flask-ec2/main
+    #     chmod +x setup.sh
+    #     ./setup.sh
+    # - name: Trivy FS Scan
+    #   run: |
+    #    ls -R ./src
+    #    trivy fs --format sarif --output trivy-results.sarif ./src
     - name: Trivy FS Scan
       run: |
-       ls -R ./src
-       trivy fs --format sarif --output trivy-results.sarif ./src
+        pip install bandit
+        bandit -r /src
 
 
     
