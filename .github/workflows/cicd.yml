@@ -42,7 +42,7 @@ jobs:
     - name: Trivy FS Scan
       run: |
        ls
-       trivy fs . > trivyfs.txt
+       trivy fs src
 
 
     
