@@ -31,3 +31,7 @@ jobs:
       run: |
         export PYTHONPATH=src
         pytest  test/test.py
+    - name: Test with pylint
+      run: |
+        pylint src/
+      
