@@ -41,7 +41,7 @@ jobs:
         ./setup.sh
     - name: Trivy FS Scan
       run: |
-       trivy fs --format table -o trivy-fs-report.html ./src
+       trivy fs --format table -o trivy-fs-report.html ./src/app.py
 
     - name: Upload Trivy report
       uses: actions/upload-artifact@v3
