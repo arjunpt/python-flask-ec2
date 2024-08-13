@@ -34,18 +34,15 @@ jobs:
     # - name: Test with pylint
     #   run: |
     #     pylint src/
-    # - name: Trivy FS Scan setup
-    #   run: |
-    #     curl -O https://raw.githubusercontent.com/arjunpt/python-flask-ec2/main
-    #     chmod +x setup.sh
-    #     ./setup.sh
+    - name: Trivy FS Scan setup
+      run: |
+        curl -O https://raw.githubusercontent.com/arjunpt/python-flask-ec2/main
+        chmod +x setup.sh
+        ./setup.sh
     - name: Trivy FS Scan
       run: |
-        wget https://github.com/aquasecurity/trivy/releases/download/v0.20.1/trivy_0.20.1_Linux-64bit.deb
-        sudo dpkg -i trivy_0.20.1_Linux-64bit.deb
-        trivy fs src --exit-code 1 
-        ls
-       
+       ls
+       run: trivy fs --format sarif --output trivy-results.sarif ./src
 
 
     
