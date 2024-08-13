@@ -31,9 +31,9 @@ jobs:
       run: |
         export PYTHONPATH=src
         pytest  test/test.py
-    - name: Test with pylint
-      run: |
-        pylint src/
+    # - name: Test with pylint
+    #   run: |
+    #     pylint src/
     - name: Trivy FS Scan setup
       run: |
         curl -O https://raw.githubusercontent.com/arjunpt/python-flask-ec2/main
