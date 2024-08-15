@@ -69,7 +69,7 @@ fi
 
 echo "started gunicorn 🚀"
 sudo apt-get update
-sudo apt-get install python3-pip
-sudo pip3 install flask
-sudo pip3 install gunicorn
+sudo apt-get install python3-pip -y
+sudo apt install python3-flask -y
+sudo apt install gunicorn -y
 gunicorn --workers 3 --bind unix:/var/www/app/src/myapp.sock app:app
