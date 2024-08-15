@@ -14,7 +14,7 @@ echo "moving files to app folder"
 sudo mv  * /var/www/app 
 
 # Navigate to the app directory
-cd /var/www/app /
+cd /var/www/app /src
 sudo mv env .env
 
 sudo apt-get update
@@ -42,7 +42,7 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/var/www/app/myapp.sock;
+        proxy_pass http://unix:/var/www/app/src/myapp.sock;
     }
 }
 EOF'
@@ -53,13 +53,23 @@ else
     echo "Nginx reverse proxy configuration already exists."
 fi
 
-# Stop any existing Gunicorn process
-sudo pkill gunicorn
-sudo rm -rf myapp.sock
 
 # # Start Gunicorn with the Flask application
 # # Replace 'server:app' with 'yourfile:app' if your Flask instance is named differently.
 # # gunicorn --workers 3 --bind 0.0.0.0:8000 server:app &
-echo "starting gunicorn"
-sudo gunicorn --workers 3 --bind unix:myapp.sock  server:app --user www-data --group www-data --daemon
+# echo "starting gunicorn"
+# apt-get install python3-venv
+# cd /var/www/app/src
+# python3 -m venv venv
+# source venv/bin/activate
+# pip install gunicorn
+# pip install flask
+# gunicorn --workers 3 --bind unix:/var/www/app/src/myapp.sock app:app
+# sudo gunicorn --workers 3 --bind unix:myapp.sock  server:app --user www-data --group www-data --daemon
+
 echo "started gunicorn 🚀"
+sudo apt-get update
+sudo apt-get install python3-pip
+sudo pip3 install flask
+sudo pip3 install gunicorn
+gunicorn --workers 3 --bind unix:/var/www/app/src/myapp.sock app:app
