@@ -43,7 +43,7 @@ jobs:
     #   run: |
     #    ls -R ./src
     #    trivy fs --format sarif --output trivy-results.sarif ./src
-    - name: Trivy FS Scan
+    - name: bandit Scan
       run: |
         pip install bandit
         bandit -r /src
